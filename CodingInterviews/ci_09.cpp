@@ -10,22 +10,22 @@ class Solution {
 public:
     int jumpFloorII(int number) {
         // 法一
-        // return PowerOfTwo(number - 1);
+        return Power(2, number - 1);
 
         // 法二
-        return 1 << (number - 1);
+        // return 1 << (number - 1);
     }
 
 private:
-    // 二分法求某个数（这里为2）的x次方
-    int PowerOfTwo(int x) {
+    // 分治法求整数数的x次方，x为非负整数
+    int Power(int n, int x) {
         if (x == 0) {
             return 1;
         }
         if (x & 1 == 1) {
-            return 2 * PowerOfTwo(x / 2) * PowerOfTwo(x / 2);
+            return n * Power(n * n, x / 2);
         } else {
-            return PowerOfTwo(x / 2) * PowerOfTwo(x / 2);
+            return Power(n * n, x / 2);
         }
     }
 };
