@@ -1,6 +1,25 @@
+/*
+题目：数字在排序数组中出现的次数
+
+题目描述：
+统计一个数字在排序数组中出现的次数。
+*/
+
 class Solution {
 private:
-    // 法一
+    // 法一，递归版
+    int BinarySearch(const vector<int>& data, double target, int start, int end) {
+        if (start > end) {
+            return start;
+        }
+        int mid = (end - start) / 2 + start;
+        if (data[mid] < target) {
+            return BinarySearch(data, target, mid + 1, end);
+        } else {
+            return BinarySearch(data, target, start, mid - 1);
+        }
+    }
+    // 法一，迭代版
     int BinarySearch(const vector<int>& data, double target) {
         int start = 0;
         int end = data.size() - 1;
@@ -14,7 +33,7 @@ private:
         }
         return start;
     }
-    // 法二，递归
+    // 法二，递归版
     int FindFirstIndex(const vector<int>& data, int target, int start, int end) {
         if (start > end) {
             return -1;
@@ -45,7 +64,7 @@ private:
             return mid;
         }
     }
-    // 法三，迭代
+    // 法二，迭代版
     int FindFirstIndex(const vector<int>& data, int target) {
         int start = 0;
         int end = data.size() - 1;
@@ -86,9 +105,14 @@ public:
         if (data.empty()) {
             return 0;
         }
-        // 法一
+        // // 法一，递归版
+        // return BinarySearch(data, k + 0.5, 0, data.size() - 1) -
+        //        BinarySearch(data, k - 0.5, 0, data.size() - 1);
+
+        // // 法一，迭代版
         // return BinarySearch(data, k + 0.5) - BinarySearch(data, k - 0.5);
-        // 法二
+
+        // // 法二，递归版
         // int first_index = FindFirstIndex(data, k, 0, data.size() - 1);
         // int last_index = FindLastIndex(data, k, 0, data.size() - 1);
         // if (first_index != -1 && last_index != -1) {
@@ -96,7 +120,8 @@ public:
         // } else {
         //     return 0;
         // }
-        // 法三
+
+        // 法二，迭代版
         int first_index = FindFirstIndex(data, k);
         int last_index = FindLastIndex(data, k);
         if (first_index != -1 && last_index != -1) {
