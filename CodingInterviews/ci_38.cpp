@@ -19,13 +19,29 @@ struct TreeNode {
 */
 class Solution {
 private:
+    // 法一
     int GetHeight(TreeNode* node, int height) {
         if (!node) {
             return height;
         }
         return max(GetHeight(node->left, height + 1), GetHeight(node->right, height + 1));
     }
+    // 法二
+    int GetHeight(TreeNode* root) {
+        if (!root) {
+            return 0;
+        }
+        int left_height = GetHeight(root->left) + 1;
+        int right_height = GetHeight(root->right) + 1;
+        return max(left_height, right_height);
+    }
 
 public:
-    int TreeDepth(TreeNode* root) { return GetHeight(root, 0); }
+    int TreeDepth(TreeNode* root) {
+        // // 法一
+        // return GetHeight(root, 0);
+
+        // 法二
+        return GetHeight(root);
+    }
 };
