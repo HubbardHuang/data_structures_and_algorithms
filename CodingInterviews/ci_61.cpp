@@ -5,6 +5,7 @@
 请实现两个函数，分别用来序列化和反序列化二叉树。
 */
 
+/*
 struct TreeNode {
     int val;
     struct TreeNode* left;
@@ -14,7 +15,7 @@ struct TreeNode {
       , left(NULL)
       , right(NULL) {}
 };
-
+*/
 class Solution {
 private:
     int index = 0;
